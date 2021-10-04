@@ -109,7 +109,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-env_dsproducao/
+env_ds_producao/
 
 # Spyder project settings
 .spyderproject
@@ -128,3 +128,12 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Large data
+/data/processing/feature_selection_x_test.csv
+/data/processing/feature_selection_x_train_full.csv
+/data/processing/feature_selection_x_train.csv
+/data/processing/transformations.csv
+/data/processing/transformation.csv
+/data/processing/y_test.csv
+/data/processing/y_train.csv
