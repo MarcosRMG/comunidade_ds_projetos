@@ -137,3 +137,6 @@ dmypy.json
 /data/processing/transformation.csv
 /data/processing/y_test.csv
 /data/processing/y_train.csv
+
+# IDE
+.vscode/
