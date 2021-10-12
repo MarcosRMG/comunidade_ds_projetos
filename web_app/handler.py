@@ -5,7 +5,7 @@ from rossmann.Rossmann import Rossmann
 import os
 
 
-model = pickle.load(open('model/xgb_model_tuned.pickle', 'rb'))
+model = pickle.load(open('web_app/model/xgb_model_tuned.pickle', 'rb'))
 
 app = Flask(__name__)
 
