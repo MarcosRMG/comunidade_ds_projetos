@@ -3,7 +3,7 @@ import pickle
 from flask import Flask, request, Response
 from rossmann.Rossmann import Rossmann
 
-model = pickle.load(open('/home/marcos/Documents/data_science_em_producao/data/models/xgb_result_tuned.pickle', 'rb'))
+model = pickle.load(open('/home/marcos/Documents/data_science_em_producao/data/models/xgb_model_tuned.pickle', 'rb'))
 
 app = Flask(__name__)
 
@@ -22,8 +22,7 @@ def rossmann_predict():
         pipeline.data_cleaning()
         pipeline.feature_engenering()
         pipeline.data_preparation()
-        pipeline.get_prediction()
-        return pipeline.get_prediction(model, data, test)
+        return pipeline.get_prediction(model, test_raw)
     else:
         return Response('{}', status=200, mimetype='application/json')
 

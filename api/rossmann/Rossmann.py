@@ -22,10 +22,9 @@ class Rossmann:
         --> Cleaning data to properly data types and appropriate format
         '''
         ## Rename Columns
-        cols_old = ['Store', 'DayOfWeek', 'Customers', 'Open', 'Promo', 'StateHoliday', 
-                             'SchoolHoliday', 'StoreType', 'Assortment', 'CompetitionDistance', 
-                             'CompetitionOpenSinceMonth', 'CompetitionOpenSinceYear', 'Promo2', 'Promo2SinceWeek', 
-                             'Promo2SinceYear', 'PromoInterval']
+        cols_old = ['Store', 'DayOfWeek', 'Date', 'Open', 'Promo', 'StateHoliday', 'SchoolHoliday', 'StoreType', 'Assortment', 
+                    'CompetitionDistance', 'CompetitionOpenSinceMonth', 'CompetitionOpenSinceYear', 'Promo2', 'Promo2SinceWeek', 
+                    'Promo2SinceYear', 'PromoInterval']
 
         # Renomeando as colunas para o padrão snacke case
         snackecase = lambda x: inflection.underscore(x)
@@ -149,7 +148,7 @@ class Rossmann:
 
         ### Response Variable Transformation
         # response variable normalization
-        self._data['sales'] = np.log1p(self._data['sales'])
+        #self._data['sales'] = np.log1p(self._data['sales'])
 
         ### Nature Transformation 
         # day_of_week
@@ -192,18 +191,17 @@ class Rossmann:
         self._data = self._data[cols_selected_boruta] 
     
     
-    def get_prediction(self, model, raw_data, test_date):
+    def get_prediction(self, model, readable_data):
         '''
         --> Realize the prediction of sales
         
-        :param model: Machine Learning to be use
-        :param raw_data: DataFrame Pandas with raw data
-        :param test_date: Data to be predict
+        :param model: Machine Learning model to be use
+        :param readable_data: DataFrame Pandas with raw data to be predict in readable
         '''
         # prediction
-        pred = model.predict(test_date)
+        pred = model.predict(self._data)
         
         # join prediction to original data
-        raw_data['prediction'] = np.expm1(pred)
+        readable_data['prediction'] = np.expm1(pred)
         
-        return raw_data.to_json(orient='records', data_format='iso')
+        return readable_data.to_json(orient='records', date_format='iso')
