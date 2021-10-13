@@ -14,7 +14,7 @@ token = '2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds'
 #api.telegram.org/bot2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds/getUpdates
 
 # Webhook
-#api.telegram.org/bot2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds/setWebhook?url=https://e2c045b789d17c.lhr.domains 
+#api.telegram.org/bot2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds/setWebhook?url=https://b80e633e42d218.lhr.domains 
 
 # Send message
 #api.telegram.org/bot2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds/sendMessage?chat_id=766366754&text=Hello!
@@ -122,8 +122,7 @@ def index():
 				# Calculation
 				d2 = d1[['store', 'prediction']].groupby('store').sum().reset_index()	
 				# Message
-				msg = f'''Store: {d2["store"].values[0]}
-					      Prediction: ${d2["prediction"].values[0]} (next 6 weeks)'''   
+				msg = f'Store: {d2["store"].values[0]}/nSales Prediction: ${d2["prediction"].values[0]:,.2f} (next 6 weeks)'   
 
 				send_message(msg, chat_id)
 				return Response('Ok', status=200)
