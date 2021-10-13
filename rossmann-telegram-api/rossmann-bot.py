@@ -14,16 +14,10 @@ token = '2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds'
 #api.telegram.org/bot2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds/getUpdates
 
 # Webhook
-#api.telegram.org/bot2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds/setWebhook?url=https://28d4a186e392ce.lhr.domains 
+#api.telegram.org/bot2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds/setWebhook?url=https://e2c045b789d17c.lhr.domains 
 
 # Send message
 #api.telegram.org/bot2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds/sendMessage?chat_id=766366754&text=Hello!
-
-def send_message(text, chat_id='766366754&', token='2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds/'):
-	url = 'api.telegram.org/bot' + token + 'sendMessage?' + 'chat_id=' + chat_id
-	
-	r = request.post(url, json={'text': text})
-	print(f'Status Code {r.status_code}')
 
 # Load data
 class RossmannBot:
@@ -39,7 +33,8 @@ class RossmannBot:
 		self._data = data
 		
 		
-	def load_dataset(self, test='../data/rossmann-store-sales/test.csv', store='../data/rossmann-store-sales/store.csv'):
+	def load_dataset(self, test='/home/marcos/Documents/data_science_em_producao/data/rossmann-store-sales/test.csv', 
+					store='/home/marcos/Documents/data_science_em_producao/data/rossmann-store-sales/store.csv'):
 		'''
 		--> Load a dataset refered to store id
 		'''
@@ -52,7 +47,7 @@ class RossmannBot:
 		# Chose store to prediction
 		self._data = self._data[self._data['Store'] == self._store_id]
 
-		if not self._data.empty():
+		if not self._data.empty:
 			# Remove closed days
 			self._data = self._data[self._data['Open'] != 0]
 			self._data = self._data[~self._data['Open'].isnull()]
@@ -61,12 +56,12 @@ class RossmannBot:
 			# Convert to json
 			self._data = json.dumps(self._data.to_dict(orient='records'))
 		else:
-			data = 'error'
+			self._data = 'error'
 		
 	
 	def predict(self):
 		'''
-		--> 
+		--> Send information to Rossmann API calculate the prediction
 		'''
 		# API call
 		url = 'https://rossmann-stores-sales-pred.herokuapp.com/rossmann/predict'
@@ -81,9 +76,24 @@ class RossmannBot:
 		return d1
 
 
+def send_message(text, chat_id='766366754', token='2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds'):
+	'''
+	--> Send a messagem to telegram app
+	'''
+	url = 'https://api.telegram.org/bot{}/sendMessage?chat_id={}'.format(token, chat_id)
+	
+	r = requests.post(url, json={'text': text})
+	print(f'Status Code {r.status_code}')
+
+
 def parse_message(message):
+	'''
+	--> Took chat id and store id from telegram message
+	'''
 	chat_id = message['message']['chat']['id']
 	store_id = message['message']['text']	
+
+	store_id = store_id.replace('/', '')
 
 	try:
 		store_id = int(store_id)
@@ -109,9 +119,9 @@ def index():
 			if data != 'error':
 				# Prediction
 				d1 = data.predict()
-
+				# Calculation
 				d2 = d1[['store', 'prediction']].groupby('store').sum().reset_index()	
-
+				# Message
 				msg = f'''Store: {d2["store"].values[0]}
 					      Prediction: ${d2["prediction"].values[0]} (next 6 weeks)'''   
 
@@ -122,7 +132,7 @@ def index():
 				send_message('Store not available', chat_id)
 				return Response('Ok', status=200)
 		else:
-			send_message('Store id is wrong', chat_id)
+			send_message('Store Id is Wrong', chat_id)
 			return Response('Ok', status=200)
 	else:
 		return '<h1>Rossmann Telegram Bot</h1>'
