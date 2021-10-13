@@ -1,7 +1,29 @@
 import pandas as pd
 import json
 import requests
+from flask import Flask, request, Response
 
+
+# Token telegram
+token = '2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds'
+
+# Info about the bot
+#api.telegram.org/bot2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds/getMe
+
+# Get update
+#api.telegram.org/bot2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds/getUpdates
+
+# Webhook
+#api.telegram.org/bot2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds/setWebhook?url=https://28d4a186e392ce.lhr.domains 
+
+# Send message
+#api.telegram.org/bot2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds/sendMessage?chat_id=766366754&text=Hello!
+
+def send_message(text, chat_id='766366754&', token='2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds/'):
+	url = 'api.telegram.org/bot' + token + 'sendMessage?' + 'chat_id=' + chat_id
+	
+	r = request.post(url, json={'text': text})
+	print(f'Status Code {r.status_code}')
 
 # Load data
 class RossmannBot:
@@ -17,40 +39,93 @@ class RossmannBot:
 		self._data = data
 		
 		
-	def load_dataset():
+	def load_dataset(self, test='../data/rossmann-store-sales/test.csv', store='../data/rossmann-store-sales/store.csv'):
 		'''
 		--> Load a dataset refered to store id
 		'''
-		df10 = pd.read_csv('../data/rossmann-store-sales/test.csv')
-		df_store_raw = pd.read_csv('../data/rossmann-store-sales/store.csv')
+		test = pd.read_csv(test)
+		store = pd.read_csv(store)
 
 		# Merge data 
-		df_test = pd.merge(df10, df_store_raw, how='left', on='Store')
+		self._data = pd.merge(test, store, how='left', on='Store')
 
 		# Chose store to prediction
-		df_test = df_test[df_test['Store'] == store_id]
+		self._data = self._data[self._data['Store'] == self._store_id]
 
-# Remove closed days
-df_test = df_test[df_test['Open'] != 0]
-df_test = df_test[~df_test['Open'].isnull()]
-df_test.drop('Id', axis=1, inplace=True)
+		if not self._data.empty():
+			# Remove closed days
+			self._data = self._data[self._data['Open'] != 0]
+			self._data = self._data[~self._data['Open'].isnull()]
+			self._data.drop('Id', axis=1, inplace=True)
 
-# Convert to json
-data = json.dumps(df_test.to_dict(orient='records'))
+			# Convert to json
+			self._data = json.dumps(self._data.to_dict(orient='records'))
+		else:
+			data = 'error'
+		
+	
+	def predict(self):
+		'''
+		--> 
+		'''
+		# API call
+		url = 'https://rossmann-stores-sales-pred.herokuapp.com/rossmann/predict'
+		header = {'Content-type': 'application/json'}
 
-# API call
-#url = 'http://0.0.0.0:5000/rossmann/predict'
-url = 'https://rossmann-stores-sales-pred.herokuapp.com/rossmann/predict'
-header = {'Content-type': 'application/json'}
+
+		r = requests.post(url, data=self._data, headers=header)
+		print(f'Status Code {r.status_code}')
+
+		d1 = pd.DataFrame(r.json(), columns=r.json()[0].keys())
+		
+		return d1
 
 
-r = requests.post(url, data=data, headers=header)
-print(f'Status Code {r.status_code}')
+def parse_message(message):
+	chat_id = message['message']['chat']['id']
+	store_id = message['message']['text']	
 
-d1 = pd.DataFrame(r.json(), columns=r.json()[0].keys())
-d2 = d1[['store', 'prediction']].groupby('store').sum().reset_index()
-d2
+	try:
+		store_id = int(store_id)
+	except ValueError:
+		store_id = 'error'
 
-for i in range(len(d2)):
-    print(f'Store: {d2.loc[i, "store"]}')
-    print(f'Prediction: ${d2.loc[i, "prediction"]:,.2f} (next 6 weeks)\n')    
+	return chat_id, store_id
+
+# Api initialize
+app = Flask(__name__)
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+	if request.method == 'POST':
+		message = request.get_json()
+
+		chat_id, store_id = parse_message(message)
+
+		if store_id != 'error':
+			data = RossmannBot(store_id)
+			data.load_dataset()
+
+			if data != 'error':
+				# Prediction
+				d1 = data.predict()
+
+				d2 = d1[['store', 'prediction']].groupby('store').sum().reset_index()	
+
+				msg = f'''Store: {d2["store"].values[0]}
+					      Prediction: ${d2["prediction"].values[0]} (next 6 weeks)'''   
+
+				send_message(msg, chat_id)
+				return Response('Ok', status=200)
+
+			else:
+				send_message('Store not available', chat_id)
+				return Response('Ok', status=200)
+		else:
+			send_message('Store id is wrong', chat_id)
+			return Response('Ok', status=200)
+	else:
+		return '<h1>Rossmann Telegram Bot</h1>'
+	
+if __name__ == '__main__':
+	app.run(host='0.0.0.0', port=5000)
