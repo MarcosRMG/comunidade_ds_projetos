@@ -8,16 +8,16 @@ import os
 model = pickle.load(open('model/xgb_model_tuned.pickle', 'rb'))
 
 app = Flask(__name__)
-
+# Receive a request an return a prediction
 @app.route('/rossmann/predict', methods=['POST'])
 def rossmann_predict():
-    test_json = request.get_json()
+    json = request.get_json()
     
-    if test_json: # there is data
-        if isinstance(test_json, dict): # unique example
-            test_raw = pd.DataFrame(test_json, index=[0])
+    if json: # there is data
+        if isinstance(json, dict): # unique example
+            test_raw = pd.DataFrame(json, index=[0])
         else: # multiple example
-            test_raw = pd.DataFrame(test_json, columns=test_json[0].keys())
+            test_raw = pd.DataFrame(json, columns=json[0].keys())
             
         # Instantiate Rossman Class
         pipeline = Rossmann(test_raw)

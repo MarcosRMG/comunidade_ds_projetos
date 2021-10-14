@@ -15,7 +15,7 @@ token = '2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds'
 #api.telegram.org/bot2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds/getUpdates
 
 # Webhook
-#api.telegram.org/bot2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds/setWebhook?url=https://b80e633e42d218.lhr.domains 
+#api.telegram.org/bot2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds/setWebhook?url=https://cb9fb1eab076af.lhr.domains 
 
 # Webhook heroku
 #api.telegram.org/bot2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds/setWebhook?url=https://bot-rossman.herokuapp.com 
@@ -59,7 +59,7 @@ class RossmannBot:
 			# Convert to json
 			self._data = json.dumps(self._data.to_dict(orient='records'))
 		else:
-			self._data = 'error'
+			self._data = 'error'	
 		
 	
 	def predict(self):
@@ -74,9 +74,9 @@ class RossmannBot:
 		r = requests.post(url, data=self._data, headers=header)
 		print(f'Status Code {r.status_code}')
 
-		d1 = pd.DataFrame(r.json(), columns=r.json()[0].keys())
+		df_prediction = pd.DataFrame(r.json(), columns=r.json()[0].keys())
 		
-		return d1
+		return df_prediction
 
 
 def send_message(text, chat_id='766366754', token='2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds'):
@@ -105,7 +105,7 @@ def parse_message(message):
 
 	return chat_id, store_id
 
-# Api initialize
+# Api initialize / receive a message from telegram app bot
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
@@ -119,24 +119,24 @@ def index():
 			data = RossmannBot(store_id)
 			data.load_dataset()
 
-			if data != 'error':
+			if data._data != 'error':
 				# Prediction
-				d1 = data.predict()
+				df_prediction = data.predict()
 				# Calculation
-				d2 = d1[['store', 'prediction']].groupby('store').sum().reset_index()	
-				# Message
-				msg = f'Store: {d2["store"].values[0]}\nSales Prediction: ${d2["prediction"].values[0]:,.2f} (next 6 weeks)'   
+				df_prediction_agg = df_prediction[['store', 'prediction']].groupby('store').sum().reset_index()	
+				# Message with sales prediction
+				msg = f'Store: {df_prediction_agg["store"].values[0]}\nSales Prediction: ${df_prediction_agg["prediction"].values[0]:,.2f} (next 6 weeks)'   
 
 				send_message(msg, chat_id)
 				return Response('Ok', status=200)
 
-			else:
+			else: # User type a store number that not exist
 				send_message('Store not available', chat_id)
 				return Response('Ok', status=200)
-		else:
+		else: # User type another information 
 			send_message('Store Id is Wrong', chat_id)
 			return Response('Ok', status=200)
-	else:
+	else: # Any informaton isn't send
 		return '<h1>Rossmann Telegram Bot</h1>'
 	
 if __name__ == '__main__':
