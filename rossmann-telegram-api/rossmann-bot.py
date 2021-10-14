@@ -2,6 +2,7 @@ import pandas as pd
 import json
 import requests
 from flask import Flask, request, Response
+import os
 
 
 # Token telegram
@@ -15,6 +16,9 @@ token = '2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds'
 
 # Webhook
 #api.telegram.org/bot2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds/setWebhook?url=https://b80e633e42d218.lhr.domains 
+
+# Webhook heroku
+#api.telegram.org/bot2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds/setWebhook?url=https://bot-rossman.herokuapp.com 
 
 # Send message
 #api.telegram.org/bot2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds/sendMessage?chat_id=766366754&text=Hello!
@@ -33,8 +37,7 @@ class RossmannBot:
 		self._data = data
 		
 		
-	def load_dataset(self, test='/home/marcos/Documents/data_science_em_producao/data/rossmann-store-sales/test.csv', 
-					store='/home/marcos/Documents/data_science_em_producao/data/rossmann-store-sales/store.csv'):
+	def load_dataset(self, test='test.csv', store='store.csv'):
 		'''
 		--> Load a dataset refered to store id
 		'''
@@ -64,7 +67,7 @@ class RossmannBot:
 		--> Send information to Rossmann API calculate the prediction
 		'''
 		# API call
-		url = 'https://rossmann-stores-sales-pred.herokuapp.com/rossmann/predict'
+		url = 'https://sales-rossmann-prediction.herokuapp.com/rossmann/predict'
 		header = {'Content-type': 'application/json'}
 
 
@@ -122,7 +125,7 @@ def index():
 				# Calculation
 				d2 = d1[['store', 'prediction']].groupby('store').sum().reset_index()	
 				# Message
-				msg = f'Store: {d2["store"].values[0]}/nSales Prediction: ${d2["prediction"].values[0]:,.2f} (next 6 weeks)'   
+				msg = f'Store: {d2["store"].values[0]}\nSales Prediction: ${d2["prediction"].values[0]:,.2f} (next 6 weeks)'   
 
 				send_message(msg, chat_id)
 				return Response('Ok', status=200)
@@ -137,4 +140,5 @@ def index():
 		return '<h1>Rossmann Telegram Bot</h1>'
 	
 if __name__ == '__main__':
-	app.run(host='0.0.0.0', port=5000)
+	port = os.environ.get('PORT', 5000)
+	app.run(host='0.0.0.0', port=port)
