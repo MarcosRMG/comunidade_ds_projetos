@@ -11,19 +11,19 @@ with open('token/telegram.txt') as file:
 file.close()
 
 # Info about the bot
-#api.telegram.org/bot2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds/getMe
+#api.telegram.org/botTelegramToken/getMe
 
 # Get update
-#api.telegram.org/bot2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds/getUpdates
+#api.telegram.org/botTelegramToken/getUpdates
 
 # Webhook
-#api.telegram.org/bot2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds/setWebhook?url=https://cb9fb1eab076af.lhr.domains 
+#api.telegram.org/botTelegramToken/setWebhook?url=https://cb9fb1eab076af.lhr.domains 
 
 # Webhook heroku
-#api.telegram.org/bot2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds/setWebhook?url=https://bot-rossman.herokuapp.com 
+#api.telegram.org/botTelegramToken/setWebhook?url=https://bot-rossman.herokuapp.com 
 
 # Send message
-#api.telegram.org/bot2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds/sendMessage?chat_id=766366754&text=Hello!
+#api.telegram.org/botTelegramToken/sendMessage?chat_id=766366754&text=Hello!
 
 # Load data
 class RossmannBot:
@@ -81,11 +81,11 @@ class RossmannBot:
 		return df_prediction
 
 
-def send_message(text, chat_id='766366754', token='2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds'):
+def send_message(text, chat_id='766366754', token_telegram=token):
 	'''
 	--> Send a messagem to telegram app
 	'''
-	url = 'https://api.telegram.org/bot{}/sendMessage?chat_id={}'.format(token, chat_id)
+	url = 'https://api.telegram.org/bot{}/sendMessage?chat_id={}'.format(token_telegram, chat_id)
 	
 	r = requests.post(url, json={'text': text})
 	print(f'Status Code {r.status_code}')
