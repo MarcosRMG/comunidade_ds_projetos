@@ -6,7 +6,9 @@ import os
 
 
 # Token telegram
-token = '2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds'
+with open('token/telegram.txt') as file:
+	token = file.read()
+file.close()
 
 # Info about the bot
 #api.telegram.org/bot2012004284:AAHeN2twKJBBHgHaIb0pu5MNXQUc1R6oeds/getMe
