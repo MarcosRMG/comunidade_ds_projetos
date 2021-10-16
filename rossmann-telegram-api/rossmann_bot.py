@@ -127,7 +127,7 @@ def index():
 				# Calculation
 				df_prediction_agg = df_prediction[['store', 'prediction']].groupby('store').sum().reset_index()	
 				# Message with sales prediction
-				msg = f'Store: {df_prediction_agg["store"].values[0]}\nSales Prediction: ${df_prediction_agg["prediction"].values[0]:,.2f} (next 6 weeks)'   
+				msg = f'Store: {df_prediction_agg["store"].values[0]}\nSales Prediction: ${df_prediction_agg["prediction"].values[0]:,.2f} \n\n(next 6 weeks)'   
 
 				send_message(msg, chat_id)
 				return Response('Ok', status=200)
