@@ -1,38 +1,85 @@
-# Data Science em Produção
-## Previsão de Vendas
+# Rossmann Store Sales
+![alt_text](storytelling/img/rossmann_store.jpeg)
 
-### Questão de Negócio
-Qual é o valor das vendas de cada loja para as próximas 6 semanas?
+Rossmann operates over 3,000 drug stores in 7 European countries. Currently, Rossmann store managers are tasked with predicting their daily sales for up to six weeks in advance. Store sales are influenced by many factors, including promotions, competition, school and state holidays, seasonality, and locality. 
+With thousands of individual managers predicting sales based on their unique circumstances, the accuracy of results can be quite varied. (kaggle.com)
 
-### Entendimento do Negócio
-#### Qual a Motivação?
-- A previsão de vendas foi requisiada pelo CFO em uma reunião mensal sobre os resultados das lojas;
+## Business Understanding
+### Business Question
+
+What will be the sales per store for the next 6 weeks?
+
+### Business Objectives
+
+Develop a standardized methodology for sales forecasting.
+
+### Project Plan
+
+Through Exploratory Data Analysis, choose a Machine Learning Algorithm to forecast sales.
+
+#### Data Product
+
+API in Telegram that receives the store number and returns the sales forecast.
+   
+## Data Undastanding
+### Collect Initial Data
+
+The data was collected on the website kaggle.com, referring to the sales history of 1,115 Rossmann stores, the files are in csv format.
+
+train.csv - historical data including Sales
+test.csv - historical data excluding Sales
+store.csv - supplemental information about the stores
+
+<a href="https://www.kaggle.com/c/rossmann-store-sales/data" target="_blank">Data Source</a>
  
-#### Qual a causa raiz do problema?
-- Dificuldade em determinar o valor de investimento para reformas de cada loja. 
+### Data Description
 
-#### Quem é o usuário da solução?
-- Diretor Financeiro (CFO) da Rossmann
+#### Dimensions
 
-#### Qual o formato da solução?
-- Granularidade: Previsão de vendas por dia para cada loja para os próximos 42 dias, 6 semanas.
-- Tipo do problema: Previsão de vendas
-- Potenciais métodos: Séries temporais e regressão
-- Formato de entrega:
-1) O valor total previsto das vendas de cada loja para as próximas seis semanas. 
-2) Acesso via celular do valor previsto e o comportamento da previsão
+Number of rows: 1017209
+Number of columns: 18 
 
-### Coleta de dados
-Os dados foram baixados no <a href="https://www.kaggle.com/c/rossmann-store-sales/overview" target="_blank">Kaggle</a>
+#### Data Quality
+##### Missing values
 
-### Limpeza dos dados
+![alt_text](storytelling/img/missing.jpeg)
 
-### Exploração dos dados (EDA)
+#### Numerical Attribues
 
-### Modelagem dos dados
+![alt_text](storytelling/img/numerical_attributes.jpeg)
 
-### Algoritmos de Machine Learning
+Obs: NaN values have been filled in
 
-### Avaliação do algoritmo
+#### Categorical Attributes
 
-### Modelo em produção
+![alt_text](storytelling/img/categorical_attributes.jpeg)
+
+#### Feature Engineering
+##### Mind Map Hypothesis
+
+![alt_text](storytelling/img/mapa_mental_hipotesis.jpeg)
+
+The hypotheses mind map helps to think about what will be explored in the Data Exploration step and what features are not available and need to be created.
+
+##### New features derivered
+
+Year: The year of sale
+Month: The month of sale 
+Day: The day of sale
+Week of year: The number of week of the year
+Year week: The year and week of sale
+Competiton since: The month and year of the competition
+Competition month: Competition month number
+Promo since: Promotion start date
+Promo time week: Number of weeks the promotion took place
+
+### Data Exploration
+
+
+## Data Preparation
+
+## Modeling
+
+## Evaluation
+
+## Deployment
