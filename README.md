@@ -42,22 +42,22 @@ Number of columns: 18
 #### Data Quality
 ##### Missing values
 
-![alt_text](/storytelling/img/missing.jpeg)
+![alt_text](storytelling/img/missing.jpeg)
 
 #### Numerical Attribues
 
-![alt_text](/storytelling/img/numerical_attributes.jpeg)
+![alt_text](storytelling/img/numerical_attributes.jpeg)
 
 Obs: NaN values have been filled in
 
 #### Categorical Attributes
 
-![alt_text](/storytelling/img/categorical_attributes.jpeg)
+![alt_text](storytelling/img/categorical_attributes.jpeg)
 
 #### Feature Engineering
 ##### Mind Map Hypothesis
 
-![alt_text](/storytelling/img/mapa_mental_hipotesis.jpeg)
+![alt_text](storytelling/img/mapa_mental_hipotesis.jpeg)
 
 The hypotheses mind map helps to think about what will be explored in the Data Exploration step and what features are not available and need to be created.
 
