@@ -1,4 +1,4 @@
-# Rossmann Store Sales
+<h1 style="color:red">Rossmann Store Sales</h1>
 ![alt_text](storytelling/img/rossmann_store.jpeg)
 
 Rossmann operates over 3,000 drug stores in 7 European countries. Currently, Rossmann store managers are tasked with predicting their daily sales for up to six weeks in advance. Store sales are influenced by many factors, including promotions, competition, school and state holidays, seasonality, and locality. 
@@ -64,21 +64,31 @@ The hypotheses mind map helps to think about what will be explored in the Data E
 ##### New features derivered
 
 Year: The year of sale
+
 Month: The month of sale 
+
 Day: The day of sale
+
 Week of year: The number of week of the year
+
 Year week: The year and week of sale
+
 Competiton since: The month and year of the competition
+
 Competition month: Competition month number
+
 Promo since: Promotion start date
+
 Promo time week: Number of weeks the promotion took place
 
-### Data Exploration
+
+### Exploratory Data Analysis
+
 
 
 ## Data Preparation
 
-## Modeling
+## Machine Learning Modeling
 
 ## Evaluation
 
