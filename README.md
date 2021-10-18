@@ -85,7 +85,7 @@ The distribution of sales is skewed to the right, which means that sales of some
 
 ### 4.2.1 Hyphoteses Results
 
-![alt_text](storytelling/img/hypothesis summary.png)
+![alt_text](storytelling/img/hypothesis_summary.png)
 
 This information can be used in feature importance selection and to validate the empirical knowledge of the business.
 
