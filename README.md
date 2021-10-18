@@ -120,6 +120,19 @@ store, promo, store_type, assortment, competition_distance, competition_open_sin
 ## 6.3 Models
 ![alt_text](storytelling/img/models_real_performance.png)
 
-XGBoost Regressor was selected to deploy because the performance is close to Random Forest Regression and because it uses less computational resources.
+XGBoost Regressor was selected to deploy because the performance is close to Random Forest Regressor and it uses less computational resources.
+
+# 7 Error Interpretation
+## 7.1 Business Performance
+![alt_text](storytelling/img/mape.png)
+![alt_text](storytelling/img/business_performance.png)
+
+Business team can use the prediction and consider the best and worst scenario base no Mean Absolute Percentage Erro - MAPE.
+
+## 7.2 Machine Learning Performance
+![alt_text](storytelling/img/predictions_error.png)
+
+Some stores have a higher error rate compared to others; these stores are harder to predict, requiring another modeling strategy. 
 
 # Deployment
+![alt_text](https://www.youtube.com/watch?v=u14_T0MEuoA)
