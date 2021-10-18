@@ -76,16 +76,16 @@ The hypotheses mind map helps to think about what will be explored in the Data E
 The distribution of sales is skewed to the right, which means that sales of some stores are much higher than most stores.
 
 ### 4.1.2 Numerical Variables
-![alt_text](storytelling/img/numerical_attributes.png)
+![alt_text](storytelling/img/numerical_variables.png)
 
 ### 4.1.3 Categorical Variables
-![alt_text](storytelling/img/categorical_attributes.png)
+![alt_text](storytelling/img/categorical_variables.png)
 
 ## 4.2 Bivariate Analysis
 
 ### 4.2.1 Hyphoteses Results
 
-![alt_text](storytelling/img/sumario_hipoteses.png)
+![alt_text](storytelling/img/hypothesis_summary.png)
 
 This information can be used in feature importance selection and to validate the empirical knowledge of the business.
 
@@ -112,7 +112,7 @@ Test max date: 2015-07-31
 
 Features selected with Boruta
 
-store, promo, store_type, assortment, competition_distance, competition_open_since_month,  competition_open_since_year, promo2, promo2_since_week, promo2_since_year, competition_time_month, promo_time_week, day_of_week_sin, day_of_week_cos, month_cos, day_sin, day_cos, week_of_year_cos
+![alt_text](storytelling/img/feature_selection.png)
 
 ## 6.3 Models
 ![alt_text](storytelling/img/models_real_performance.png)
