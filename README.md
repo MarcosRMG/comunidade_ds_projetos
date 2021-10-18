@@ -83,7 +83,7 @@ The distribution of sales is skewed to the right, which means that sales of some
 
 ## 4.2 Bivariate Analysis
 
-### 4.2.1 Hyphoteses Results
+### 4.2.1 Hyphotesis Results
 
 ![alt_text](storytelling/img/hypothesis_summary.png)
 
