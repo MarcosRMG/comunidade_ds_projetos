@@ -95,25 +95,31 @@ The distribution of sales is skewed to the right, which means that sales of some
 
 ![alt_text](storytelling/img/sumario_hipoteses.png)
 
-# Data Preparation
-## Rescaling
+This information can be used in feature importance selection and to validate the empirical knowledge of the business.
 
-Min max scaler was applied to competitio distance and competition time month
+# 5 Data Preparation
 
-Robust scaler was applied to promo time week and year. 
+![alt_text](storytelling/img/modeling_summary.png)
 
-This tecniques was applied to avoid bias. 
+# 6 Machine Learning
+## 6.1 Train and Test
 
-## Transformation
-## Encoding
-## Response variable transformation
-## Nature Transformation
+Training min date: 2013-01-01
 
+Training max date: 2015-06-18
 
-## Feature Selection
-### Boruta
-# Machine Learning Modeling
+Test min date: 2015-06-19
 
-# Evaluation
+Test max date: 2015-07-31
+## 6.2 Feature Selection - Boruta
+
+Features selected with Boruta
+
+store, promo, store_type, assortment, competition_distance, competition_open_since_month,  competition_open_since_year, promo2, promo2_since_week, promo2_since_year, competition_time_month, promo_time_week, day_of_week_sin, day_of_week_cos, month_cos, day_sin, day_cos, week_of_year_cos
+
+## 6.3 Models
+![alt_text](storytelling/img/models_real_performance.png)
+
+XGBoost Regressor was selected to deploy because the performance is close to Random Forest Regression and because it uses less computational resources.
 
 # Deployment
