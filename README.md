@@ -18,7 +18,7 @@ Develop a standardized methodology for sales forecasting.
 
 Through Exploratory Data Analysis, choose a Machine Learning Algorithm to forecast sales.
 
-### 1.4 Data Product
+### 1.3.1 Data Product
 
 API in Telegram that receives the store number and returns the sales forecast.
    
@@ -86,17 +86,31 @@ Promo time week: Number of weeks the promotion took place
 
 
 # 4 Exploratory Data Analysis
-## 4.1 Response Variable
+## 4.1 Univariate Analysis
+### 4.1.1 Response Variable
 ![alt_text](storytelling/img/distribuicao_vendas.png)
 
 The distribution of sales is skewed to the right, which means that sales of some stores are much higher than most stores.
 
-## 4.2 Hyphoteses Results
+### 4.1.2 Numerical Variables
+![alt_text](storytelling/img/numerical_attributes.png)
+
+### 4.1.3 Categorical Variables
+![alt_text](storytelling/img/categorical_attributes.png)
+
+## 4.2 Bivariate Analysis
+
+### 4.2.1 Hyphoteses Results
 
 ![alt_text](storytelling/img/sumario_hipoteses.png)
 
 This information can be used in feature importance selection and to validate the empirical knowledge of the business.
 
+## 4.3 Multivariate Analysis
+### 4.3.1 Numerical Variables
+![alt_text](storytelling/img/multi_numerical_attributes.png)
+### 4.3.2 Categorical Variables
+![alt_text](storytelling/img/multi_categorical_attributes.png)
 # 5 Data Preparation
 
 ![alt_text](storytelling/img/modeling_summary.png)
@@ -127,7 +141,7 @@ XGBoost Regressor was selected to deploy because the performance is close to Ran
 ![alt_text](storytelling/img/mape.png)
 ![alt_text](storytelling/img/business_performance.png)
 
-Business team can use the prediction and consider the best and worst scenario base no Mean Absolute Percentage Erro - MAPE.
+Business team can use the prediction and consider the best and worst scenario base no Mean Absolute Error - MAE and Mean Absolute Percentage Erro - MAPE.
 
 ## 7.2 Machine Learning Performance
 ![alt_text](storytelling/img/predictions_error.png)
@@ -135,4 +149,8 @@ Business team can use the prediction and consider the best and worst scenario ba
 Some stores have a higher error rate compared to others; these stores are harder to predict, requiring another modeling strategy. 
 
 # Deployment
+Bot link: https://t.me/RossmannSalesBot
+
+When entering the store number the bot in the telegram will return the sales forecast for the next 6 weeks.
+
 [![SC2 Video](storytelling/img/bot.png)](https://www.youtube.com/watch?v=u14_T0MEuoA)
