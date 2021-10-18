@@ -135,4 +135,4 @@ Business team can use the prediction and consider the best and worst scenario ba
 Some stores have a higher error rate compared to others; these stores are harder to predict, requiring another modeling strategy. 
 
 # Deployment
-![Demo](https://www.youtube.com/watch?v=u14_T0MEuoA)
+[![SC2 Video](storytelling/img/bot.png)](https://www.youtube.com/watch?v=u14_T0MEuoA)
