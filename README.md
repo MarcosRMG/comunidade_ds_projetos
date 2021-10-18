@@ -66,24 +66,7 @@ The hypotheses mind map helps to think about what will be explored in the Data E
 
 ### 3.1.1 New features derived
 
-Year: The year of sale
-
-Month: The month of sale 
-
-Day: The day of sale
-
-Week of year: The number of week of the year
-
-Year week: The year and week of sale
-
-Competiton since: The month and year of the competition
-
-Competition month: Competition month number
-
-Promo since: Promotion start date
-
-Promo time week: Number of weeks the promotion took place
-
+![alt_text](storytelling/img/feature_summary.png)
 
 # 4 Exploratory Data Analysis
 ## 4.1 Univariate Analysis
