@@ -20,7 +20,7 @@ file.close()
 #api.telegram.org/botTelegramToken/setWebhook?url=https://cb9fb1eab076af.lhr.domains 
 
 # Webhook heroku
-#api.telegram.org/botTelegramToken/setWebhook?url=https://bot-rossman.herokuapp.com 
+#api.telegram.org/botTelegramToken/setWebhook?url=https://bot-rossmann.herokuapp.com/
 
 # Send message
 #api.telegram.org/botTelegramToken/sendMessage?chat_id=766366754&text=Hello!
@@ -136,7 +136,7 @@ def index():
 				send_message('Store not available', chat_id)
 				return Response('Ok', status=200)
 		else: # User type another information 
-			send_message('Store Id is Wrong', chat_id)
+			send_message('Please type a Store Id', chat_id)
 			return Response('Ok', status=200)
 	else: # Any informaton isn't send
 		return '<h1>Rossmann Telegram Bot</h1>'
