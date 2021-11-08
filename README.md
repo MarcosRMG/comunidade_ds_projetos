@@ -9,8 +9,11 @@ With thousands of individual managers predicting sales based on their unique cir
 # 2 Business Assumptions
 
 . Cooperative administration cannot use sales forecasts without a standardized methodology
+	
 . Managers have different experiences and perspectives on sales forecasting
+
 . The CFO has many problems setting the budget and making decisions
+
 . A machine learning model can predict sales for all stores
 
 # 3 Solution Strategy
@@ -18,25 +21,37 @@ With thousands of individual managers predicting sales based on their unique cir
 The following steps were taken to resolve the issue:
 
 **Step 01 - Data extraction:** Available data has been collected and merged
+
 **Step 02 - Transformations:** Viewing data descriptions and making changes (renaming columns, changing data types, and filling in missing values) 
+
 **Step 03 - Feature Engineering:** Creating new time attributes 
+
 **Step 04 - Exploratory Data Analysis:** Univariate, bivariate and multivariate analysis
+
 **Step 05 - Data Modeling:** Preparing data for sales forecasting
+
 **Step 06 - Feature Selection:** Feature importance with Boruta algorithm
+
 **Step 07 - Machine Learning:** Testing algorithms to choose a model
+
 **Step 08 - Hyperparameter Fine Tuning:** Random search strategy to set parameters
+
 **Step 09 - Error interpretation:** Machine Learning performance and business performance of the model
+
 **Step 10 - Deploy:** Availability of API on Heroku and access to forecasts via Telegram
 
 # 4 Top 3 Data Insights
 
 **Hypothesis 1** - Stores with a larger assortment sell more 
+
 **True**: Extra and extended assortment, on average, sells more
 
 **Hypothesis 2** - Stores with competition nearby sell less
+
 **False**: The amount and average of stores with nearby competitors sell more
 
 **Hypothesis 7** - Sales are higher over the years
+
 **False**: Sales are lower over the years
 
 # 5 Machine Learning Model
