@@ -1,4 +1,5 @@
 # Rossmann Store Sales
+## Sales Forecast
 ![alt_text](storytelling/img/rossmann_store.jpeg)
 
 # 1 Business Challenge
@@ -8,23 +9,21 @@ With thousands of individual managers predicting sales based on their unique cir
 
 # 2 Business Assumptions
 
-. Cooperative administration cannot use sales forecasts without a standardized methodology
+	- Cooperative administration cannot use sales forecasts without a standardized methodology
 	
-. Managers have different experiences and perspectives on sales forecasting
+	- Managers have different experiences and perspectives on sales forecasting
 
-. The CFO has many problems setting the budget and making decisions
+	- The CFO has many problems setting the budget and making decisions
 
-. A machine learning model can predict sales for all stores
+	- A machine learning model can predict sales for all stores
 
 # 3 Solution Strategy
-
-The following steps were taken to resolve the issue:
 
 **Step 01 - Data extraction:** Available data has been collected and merged
 
 **Step 02 - Transformations:** Viewing data descriptions and making changes (renaming columns, changing data types, and filling in missing values) 
 
-**Step 03 - Feature Engineering:** Creating new time attributes 
+**Step 03 - Feature Engineering:** Creating new data attributes 
 
 **Step 04 - Exploratory Data Analysis:** Univariate, bivariate and multivariate analysis
 
@@ -46,9 +45,11 @@ The following steps were taken to resolve the issue:
 
 **True**: Extra and extended assortment, on average, sells more
 
+
 **Hypothesis 2** - Stores with competition nearby sell less
 
-**False**: The amount and average of stores with nearby competitors sell more
+**False**: The total and average sales of stores with close competitors are higher
+
 
 **Hypothesis 7** - Sales are higher over the years
 
@@ -61,6 +62,8 @@ XGBoost was selected because it has good model performance and uses less computa
 # 6 Machine Learning Performance
 
 ![alt_text](storytelling/img/predictions_error.png)
+
+For most stores, the algorithm error was around $10,000.00
 
 # 7 Business Result
 
