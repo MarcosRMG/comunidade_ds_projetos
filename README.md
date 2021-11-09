@@ -71,6 +71,8 @@ For most stores, the algorithm error was around $10,000.00
 ![alt_text](storytelling/img/business_performance.png)
 Business team can use the prediction and consider the best and worst scenario base no Mean Absolute Error - MAE and Mean Absolute Percentage Erro - MAPE.
 
+Telegram Bot: @RossmannSalesBot
+
 # 8 Conclusions
 
 Some stores have a higher error rate compared to others; these stores are harder to predict, requiring another modeling strategy. 
