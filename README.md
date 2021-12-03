@@ -9,7 +9,7 @@ With thousands of individual managers predicting sales based on their unique cir
 
 # 2 Business Assumptions
 
-	- Corporative Administration cannot use sales forecasts without a standardized methodology
+	- Corporate Administration cannot use sales forecasts without a standardized methodology
 	
 	- Managers have different experiences and perspectives on sales forecasting
 
