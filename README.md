@@ -9,13 +9,13 @@ With thousands of individual managers predicting sales based on their unique cir
 
 # 2 Business Assumptions
 
-	- Cooperative administration cannot use sales forecasts without a standardized methodology
+	- Corporative Administration cannot use sales forecasts without a standardized methodology
 	
 	- Managers have different experiences and perspectives on sales forecasting
 
 	- The CFO has many problems setting the budget and making decisions
 
-	- A machine learning model can predict sales for all stores
+	- A Machine Learning model can predict sales for all stores
 
 # 3 Solution Strategy
 
