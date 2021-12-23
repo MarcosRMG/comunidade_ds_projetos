@@ -9,13 +9,13 @@ With thousands of individual managers predicting sales based on their unique cir
 
 # 2 Business Assumptions
 
-	- Cooperative administration cannot use sales forecasts without a standardized methodology
+	- Corporate Administration cannot use sales forecasts without a standardized methodology
 	
 	- Managers have different experiences and perspectives on sales forecasting
 
 	- The CFO has many problems setting the budget and making decisions
 
-	- A machine learning model can predict sales for all stores
+	- A Machine Learning model can predict sales for all stores
 
 # 3 Solution Strategy
 
@@ -70,6 +70,8 @@ For most stores, the algorithm error was around $10,000.00
 ![alt_text](storytelling/img/mape.png)
 ![alt_text](storytelling/img/business_performance.png)
 Business team can use the prediction and consider the best and worst scenario base no Mean Absolute Error - MAE and Mean Absolute Percentage Erro - MAPE.
+
+Telegram Bot: @RossmannSalesBot
 
 # 8 Conclusions
 
