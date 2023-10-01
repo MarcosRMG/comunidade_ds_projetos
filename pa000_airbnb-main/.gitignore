@@ -1,0 +1,8 @@
+# Local env
+env_pa000/
+
+# Jupyter notebook
+notebooks/.ipynb_checkpoints/airbnb-checkpoint.ipynb
+
+# Processed data
+data/
